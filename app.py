@@ -1,6 +1,3 @@
-from dotenv import load_dotenv
-load_dotenv()
-
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import (
@@ -12,9 +9,12 @@ from time import sleep
 import streamlit as st
 # 1. Load PDF
 
+api_key = st.secrets["GOOGLE_API_KEY"]
+
 llm = ChatGoogleGenerativeAI(
     model="gemini-3.7-flash",
-    temperature=0
+    temperature=0,
+    google_api_key=api_key,
 )
 
 if "vector_db" not in st.session_state:
@@ -40,7 +40,8 @@ def document_process(path):
 
     # 3. Create Gemini embeddings
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="gemini-embedding-2-preview"
+        model="gemini-embedding-2-preview",
+        google_api_key=api_key
     )
 
     # 4. Create vector store
