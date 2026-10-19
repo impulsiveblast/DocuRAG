@@ -143,7 +143,7 @@ if st.session_state.document_uploaded and st.session_state.vector_db:
             - Give only the answer to the question.
             - Do not include metadata, token counts, model information,
             source object details, or technical explanations.
-            """""
+            """
 
             result=llm.invoke(prompt)
 
