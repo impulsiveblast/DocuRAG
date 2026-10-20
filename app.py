@@ -149,3 +149,5 @@ if st.session_state.document_uploaded and st.session_state.vector_db:
 
             st.session_state.messages.append({"role": "ai", "content": result.content[0]["text"]})
             st.chat_message("assistant").markdown(result.content[0]["text"])
+
+            
